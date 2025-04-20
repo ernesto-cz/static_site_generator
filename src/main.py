@@ -1,9 +1,24 @@
-from textnode import TextNode, TextType
-
+#from textnode import TextNode, TextType
+from htmlnode import ParentNode, LeafNode
 
 def main():
-    text = TextNode("Some text", TextType.LINK, "https://www.google.com")
-    print(text)
+    props = {
+        "name": "subject",
+        "type": "submit",
+        "value": "HTML",
+        "formaction": "/action_page2.php"
+    }
+
+    node = ParentNode(
+        "p",
+        [
+            LeafNode("b", "Bold text"),
+            LeafNode(None, "Normal text"),
+            LeafNode("button", "HTML", props),
+            LeafNode(None, "Normal text"),
+        ],
+    )
+    node.to_html()
 
 
 if __name__ == "__main__":
