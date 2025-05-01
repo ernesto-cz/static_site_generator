@@ -37,6 +37,8 @@ def text_node_to_html_node(text_node):
             return LeafNode(None, text_node.text)
         case TextType.ITALIC:
             return LeafNode("i", text_node.text)
+        case TextType.BOLD:
+                return LeafNode("b", text_node.text)
         case TextType.CODE:
             return LeafNode("code", text_node.text)
         case TextType.LINK:
@@ -46,9 +48,8 @@ def text_node_to_html_node(text_node):
             return LeafNode("a", text_node.text, props)
         case TextType.IMAGE:
             props = {
-                "src" : text_node.url,
-                "alt" : text_node.text
+                "src" : text_node.url
             }
-            return LeafNode("img", None, props)
+            return LeafNode("img", text_node.text, props)
         case _:
             raise ValueError(f"Invalid text type: {text_node.text_type}")
